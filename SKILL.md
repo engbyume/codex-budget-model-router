@@ -1,8 +1,9 @@
 ---
 name: progressive-codex-model-router
 description: >-
-  Coordinate Codex work as a foreman. Route subagents to the lowest-cost capable
-  model and effort, keep the parent on GPT-6 Luna / max, and aggregate child work.
+  Coordinate Codex work as a foreman. Keep the parent on GPT-6.1 Terra / low
+  (Terra Light), handle low-to-medium coding directly, and route all other model
+  use to scoped subagents. Aggregate and verify child work.
   Designed to stretch Codex usage for ChatGPT Plus users, currently listed at
   $20/month.
 ---
@@ -10,8 +11,11 @@ description: >-
 # Progressive Codex Model Router
 
 Use this skill when a Codex task can benefit from delegated work. Keep the main
-agent, or parent, on GPT-6 Luna / max. The model picker controls delegated
-subagents only. It does not change the parent.
+agent, or parent, on GPT-6.1 Terra / low (Terra Light) for every task. The parent
+handles routine low-to-medium coding directly. The model picker controls delegated
+subagents only and never changes the parent. Any other model route is child-only.
+This skill cannot change a running parent's model; configure the host to start the
+parent on Terra / low, and report a mismatch if runtime metadata shows another route.
 
 The parent acts as the foreman. It splits work into clear tickets, chooses the
 lowest-cost model and effort that meet each ticket's quality and risk needs,
@@ -27,15 +31,15 @@ and [Using Codex with your ChatGPT plan](https://help.openai.com/en/articles/113
 
 ## Model-to-task breakdown
 
-| Work | Child model and effort | Use |
+| Work | Owner or child model and effort | Use |
 |---|---|---|
-| Parent or main agent | GPT-6 Luna / max | Keep the parent on this route. The child picker cannot change it. |
-| Easy or routine implementation | GPT-6 Luna / max | Low-cost, capable route for bounded work. |
-| Read-only research, audit, review, or verification | GPT-6 Luna / max | Use a fresh child for independent review. |
-| Medium implementation | GPT-6.1 Terra / medium | Use for scoped implementation and visual or computer-use tasks. |
-| Hard, complex, or high-risk implementation | GPT-6.2 Sol / medium | Use when the task needs stronger reasoning or integration. |
-| Ultra-complex implementation estimated under 10 minutes | GPT-6.2 Sol / high | For 10 minutes or more, or unknown duration, use medium. |
-| Astra | User request only | Do not select automatically. |
+| Parent and routine low-to-medium coding | Parent: GPT-6.1 Terra / low | Keep the parent on Terra Light. The parent handles this work directly. |
+| High-routine implementation | Subagent: GPT-6.1 Terra / medium | Delegate a bounded routine task when higher effort or independent execution helps. |
+| Computer-use or agentic task | Subagent: GPT-6.1 Terra / low | Use for delegated computer-use and agentic work. |
+| Read-only research, audit, review, or verification | Subagent: GPT-6 Luna / max | Use a fresh child for independent review. |
+| Hard, complex, or high-risk implementation | Subagent: GPT-6.2 Sol / medium | Use when the task needs stronger reasoning or integration. |
+| Ultra-complex implementation estimated under 10 minutes | Subagent: GPT-6.2 Sol / high | For 10 minutes or more, or unknown duration, use medium. |
+| Astra | Subagent by user request only | Do not select automatically. |
 
 These are starting routes. Pick the least costly eligible lane that meets the
 task's quality floor. Consider parent context, tools, retries, repair, review,
