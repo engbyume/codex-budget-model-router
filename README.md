@@ -2,7 +2,7 @@
 
 A standalone Codex skill for assigning subagents the least costly model and effort that meet each task's quality and risk needs.
 
-The parent agent stays on GPT-6 Luna / max. The model picker applies to subagents. The parent acts as a foreman, gathers their work, then integrates and verifies the result.
+The parent agent stays on GPT-6.1 Terra / low (Terra Light) and handles routine low-to-medium coding directly. The model picker applies only to subagents; all other model routes are child-only. Configure the host to start the parent on Terra / low. The parent gathers child work, then integrates and verifies the result.
 
 The full model-to-task breakdown, Plus plan context, and delegation guidance are in [SKILL.md](SKILL.md).
 
