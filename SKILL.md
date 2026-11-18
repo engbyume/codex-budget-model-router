@@ -33,8 +33,8 @@ and [Using Codex with your ChatGPT plan](https://help.openai.com/en/articles/113
 | Easy or routine implementation | GPT-6 Luna / max | Low-cost, capable route for bounded work. |
 | Read-only research, audit, review, or verification | GPT-6 Luna / max | Use a fresh child for independent review. |
 | Medium implementation | GPT-6.1 Terra / medium | Use for scoped implementation and visual or computer-use tasks. |
-| Hard, complex, or high-risk implementation | GPT-6.1 Sol / medium | Use when the task needs stronger reasoning or integration. |
-| Ultra-complex implementation estimated under 10 minutes | GPT-6.1 Sol / high | For 10 minutes or more, or unknown duration, use medium. |
+| Hard, complex, or high-risk implementation | GPT-6.2 Sol / medium | Use when the task needs stronger reasoning or integration. |
+| Ultra-complex implementation estimated under 10 minutes | GPT-6.2 Sol / high | For 10 minutes or more, or unknown duration, use medium. |
 | Astra | User request only | Do not select automatically. |
 
 These are starting routes. Pick the least costly eligible lane that meets the
