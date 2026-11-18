@@ -25,7 +25,7 @@ Real Codex usage testing found GPT-6 Luna / max significantly more usage-expensi
 |---|---|---|
 | Parent work, including routine tasks from small to high | Parent: GPT-6 Luna / max | Fixed parent route; the child picker never changes it. |
 | Routine subagent tasks from small through high, including coding, research, audit, routine review, and verification | Subagent: GPT-6.1 Terra / low | Use the lowest-cost tested route that remains capable for routine work. |
-| Computer-use or agentic subagent tasks | Computer-use-capable subagent: GPT-6 Luna / max | Use Luna / max for delegated computer interaction. Confirm the child has the required computer-use tools. |
+| Computer-use subagent tasks | Computer-use-capable subagent: GPT-6 Luna / max | Use Luna / max for delegated computer interaction. Confirm the child has the required computer-use tools. |
 | Nonroutine consequential independent review | Subagent: GPT-6 Luna / max | Use only when stronger independent assurance materially improves confidence. |
 | Hard, complex, or high-risk implementation | Subagent: GPT-6.2 Sol / medium | Use when the task needs stronger reasoning or integration. |
 | Ultra-complex implementation estimated under 10 minutes | Subagent: GPT-6.2 Sol / high | Use medium when duration is 10 minutes or more, or unknown. |
