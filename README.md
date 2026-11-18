@@ -1,10 +1,10 @@
 # Progressive Codex Model Router
 
-A standalone Codex skill for assigning subagents the least costly model and effort that meet each task's quality and risk needs.
+A standalone Codex skill for cost-efficient parent and subagent routing.
 
-The parent agent stays on GPT-6.1 Terra / low (Terra Light) and handles routine low-to-medium coding directly. The model picker applies only to subagents; all other model routes are child-only. Configure the host to start the parent on Terra / low. The parent gathers child work, then integrates and verifies the result.
+The parent stays on GPT-6 Luna / max. Routine subagent tasks from small through high use GPT-6.1 Terra / low. Computer-use subagents use GPT-6 Luna / max. Hard, complex, or high-risk implementation uses GPT-6.2 Sol / medium, with GPT-6.2 Sol / high reserved for ultra-complex tasks estimated under 10 minutes.
 
-The full model-to-task breakdown, Plus plan context, and delegation guidance are in [SKILL.md](SKILL.md).
+The full model-to-task breakdown, $20/month ChatGPT Plus context, cost rationale, and delegation guidance are in [SKILL.md](SKILL.md).
 
 ## Install
 
