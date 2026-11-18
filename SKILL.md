@@ -1,74 +1,59 @@
 ---
 name: progressive-codex-model-router
 description: >-
-  Coordinate Codex work as a foreman. Keep the parent on GPT-6.1 Terra / low
-  (Terra Light), handle low-to-medium coding directly, and route all other model
-  use to scoped subagents. Aggregate and verify child work.
-  Designed to stretch Codex usage for ChatGPT Plus users, currently listed at
-  $20/month.
+  Route Codex parent and subagent work to the most token-efficient and cost-efficient
+  capable model for each task. Keep the parent on GPT-6 Luna / max, routine
+  subagent tasks on GPT-6.1 Terra / low, and computer-use subagents on GPT-6
+  Luna / max.
 ---
 
 # Progressive Codex Model Router
 
-Use this skill when a Codex task can benefit from delegated work. Keep the main
-agent, or parent, on GPT-6.1 Terra / low (Terra Light) for every task. The parent
-handles routine low-to-medium coding directly. The model picker controls delegated
-subagents only and never changes the parent. Any other model route is child-only.
-This skill cannot change a running parent's model; configure the host to start the
-parent on Terra / low, and report a mismatch if runtime metadata shows another route.
+Use this skill when Codex work can benefit from scoped subagents. The parent/main agent stays on GPT-6 Luna / max. The model picker routes subagents only; it never changes the parent. Any other model or provider must run in a scoped subagent.
 
-The parent acts as the foreman. It splits work into clear tickets, chooses the
-lowest-cost model and effort that meet each ticket's quality and risk needs,
-assigns child agents, gathers their results, and integrates, verifies, and
-accepts the work. The parent keeps ownership of shared files and final decisions.
+The parent owns the user's goal, task split, shared files, integration, verification, and acceptance. It handles routine work from small to high when delegation does not improve delivery. It gathers child results and verifies them before accepting the outcome.
 
-ChatGPT Plus is currently listed at $20/month. Codex usage is included, subject
-to plan, account, and task limits. This workflow helps Plus users stretch that
-allowance by using efficient routes on routine work and stronger routes only
-when needed. API token prices are separate from subscription usage. Check
-current pricing and model access because they can change. See [ChatGPT Plus](https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus)
-and [Using Codex with your ChatGPT plan](https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan).
+## Cost-first routing
+
+Choose the least usage-expensive model that still meets the task's quality, tool, and risk needs. Do not choose the strongest model by default. Count the parent's context, child work, tool calls, retries, repair, review, integration, and time when judging efficiency.
+
+Real Codex usage testing found GPT-6 Luna / max significantly more usage-expensive than GPT-6.1 Terra / low. Route routine subagent tasks from small through high to Terra / low. Keep Luna / max for the parent, computer-use subagents, and nonroutine work that needs independent high-assurance review or coordination.
 
 ## Model-to-task breakdown
 
-| Work | Owner or child model and effort | Use |
+| Work | Owner and model | Reason |
 |---|---|---|
-| Parent and routine low-to-medium coding | Parent: GPT-6.1 Terra / low | Keep the parent on Terra Light. The parent handles this work directly. |
-| High-routine implementation | Subagent: GPT-6.1 Terra / medium | Delegate a bounded routine task when higher effort or independent execution helps. |
-| Computer-use or agentic task | Subagent: GPT-6.1 Terra / low | Use for delegated computer-use and agentic work. |
-| Read-only research, audit, review, or verification | Subagent: GPT-6 Luna / max | Use a fresh child for independent review. |
+| Parent work, including routine tasks from small to high | Parent: GPT-6 Luna / max | Fixed parent route; the child picker never changes it. |
+| Routine subagent tasks from small through high, including coding, research, audit, routine review, and verification | Subagent: GPT-6.1 Terra / low | Use the lowest-cost tested route that remains capable for routine work. |
+| Computer-use or agentic subagent tasks | Computer-use-capable subagent: GPT-6 Luna / max | Use Luna / max for delegated computer interaction. Confirm the child has the required computer-use tools. |
+| Nonroutine consequential independent review | Subagent: GPT-6 Luna / max | Use only when stronger independent assurance materially improves confidence. |
 | Hard, complex, or high-risk implementation | Subagent: GPT-6.2 Sol / medium | Use when the task needs stronger reasoning or integration. |
-| Ultra-complex implementation estimated under 10 minutes | Subagent: GPT-6.2 Sol / high | For 10 minutes or more, or unknown duration, use medium. |
-| Astra | Subagent by user request only | Do not select automatically. |
+| Ultra-complex implementation estimated under 10 minutes | Subagent: GPT-6.2 Sol / high | Use medium when duration is 10 minutes or more, or unknown. |
+| Coordination for at least three dependent scopes | Optional subagent: GPT-6 Luna / max | Use only when dedicated coordination materially helps. |
+| Astra | Child by current-task user request only | Never select automatically. |
 
-These are starting routes. Pick the least costly eligible lane that meets the
-task's quality floor. Consider parent context, tools, retries, repair, review,
-and integration when estimating total cost. Do not select the most capable
-model for every ticket. Do not treat cheap tokens or parallel workers as the
-goal; the goal is a correct accepted result.
+A GPT-6 Luna / max child may be used for computer work only when the selected child also has the required tools. Select a runtime-supported role, set `model` and `reasoning_effort` explicitly, and verify the observed child route. A role name alone does not prove the model or effort.
 
-## Delegate and aggregate
+This skill cannot change a running parent's model. Configure the host to start the parent on Luna / max. If current runtime metadata shows another route, report the mismatch and do not claim the parent route changed.
+
+## Plus usage
+
+ChatGPT Plus is currently listed at $20/month and includes Codex usage subject to plan and account limits. This router helps Plus users stretch included usage by selecting efficient models that remain capable for each task. API token prices are separate from subscription usage and do not predict Plus usage. Verify current pricing, model availability, and usage limits because they can change. See [ChatGPT Plus](https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus) and [Using Codex with your ChatGPT plan](https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan).
+
+## Dispatch and escalation
 
 1. Keep simple work with the parent when delegation overhead exceeds the gain.
-2. Split only independent or clearly bounded work.
-3. Give each child the task, context, allowed tools, exact write scope, success
-   check, stop rule, and return format.
-4. Set `model` and `reasoning_effort` on each child spawn. Use
-   `fork_turns: "none"` when the child needs a different route from the parent.
-5. The parent collects child reports, integrates work, checks evidence, and
-   decides whether to accept the result. Child completion is not final acceptance.
-6. Use one writer for overlapping files. Use fresh context for an independent
-   read-only review.
-7. If the runtime cannot set or verify the child route, do the work in the parent
-   instead of guessing.
+2. Route routine child work from small through high to GPT-6.1 Terra / low.
+3. Route computer-use subagents to GPT-6 Luna / max and confirm they have the required tools.
+4. Split only independent or clearly bounded work.
+5. Give each child the task, context, allowed tools, exact write scope, success check, stop rule, and return format.
+6. Use `fork_turns: "none"` when the child needs a different route from the parent.
+7. Escalate only when evidence shows the routine Terra / low route is not enough. Use Sol / medium for hard, complex, or high-risk implementation. Use Sol / high only for ultra-complex work estimated under 10 minutes.
+8. The parent collects child reports, integrates work, checks evidence, and owns final acceptance. Child completion is not final acceptance.
+9. If the runtime cannot set or verify the requested child model, effort, or required tools, keep the work with the parent instead of guessing.
 
 ## Authority and availability
 
-This skill selects model routes. It does not grant permission to edit shared
-files, send messages, spend money, publish, deploy, delete data, or access an
-account. Follow the user's existing authorization and confirmation rules.
+This skill selects model routes. It does not grant permission to edit shared files, send messages, spend money, publish, deploy, delete data, or access an account. Follow the user's existing authorization and real approval gates.
 
-Model availability, picker controls, effort settings, and usage limits vary by
-client and plan. If a model is unavailable, use another route only if it remains
-authorized and meets the task requirements. Otherwise keep the work with the
-parent and report the limit.
+Model availability, picker controls, effort settings, and usage limits vary by client and plan. Use a supported route only when its actual model and effort can be verified.
