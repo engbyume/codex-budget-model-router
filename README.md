@@ -11,7 +11,7 @@ Built for ChatGPT Plus at $20/month, this router aims to keep included Codex use
 | Work | Route | Why |
 | --- | --- | --- |
 | PARENT AGENT: Routine tasks (Easy and Medium) | GPT-6 Luna / max | Default for routine work that does not need the faster Hard route. |
-| PARENT AGENT: Routine Hard tasks | GPT-6.1 Terra / low | Faster Index task time; use it for hard routine work where speed matters. Its official API rate is higher than Luna's. |
+| PARENT AGENT: Routine Hard tasks | GPT-6.1 Terra / low | Faster Index task time; use it for hard routine work where speed matters. |
 | SUBAGENT: Routine tasks (Easy and Medium) | GPT-6 Luna / max | Same routine tiers as the parent. |
 | SUBAGENT: Routine Hard tasks | GPT-6.1 Terra / low | Same faster route as the parent for hard routine work. |
 | SUBAGENT: Computer Use and nonroutine Agentic tasks | GPT-6 Luna / max | Confirm the child has the required tools; routine agentic work follows the same difficulty tiers. |
@@ -35,7 +35,7 @@ Artificial Analysis Intelligence Index v5.0.1 is a weighted composite score. Its
 | GPT-6.2 Sol / medium | 53 | 41.4% | 3.6 min | $2.00 / $10.00 |
 | GPT-6.2 Astra, effort varies by request | 46 to 62 | 45.4% at max; other efforts vary | 2.1 to 14.0 min | $8.00 / $40.00 |
 
-OpenAI's Standard API rate for Terra is ten times Luna's per token. These rates apply to API billing, not ChatGPT Plus or Codex plan allowances. OpenAI sets plan usage separately, and actual use varies by model, task, context, reasoning, speed, and tools.
+OpenAI's Standard API rate for Terra is ten times Luna's per token. The supplied usage snapshot suggested about five times higher effective cost per reported token for Terra than Luna; it is not task-normalized, so the table keeps only official OpenAI Standard API rates. These rates apply to API billing, not ChatGPT Plus or Codex plan allowances. OpenAI sets plan usage separately, and actual use varies by model, task, context, reasoning, speed, and tools.
 
 Astra is selected only when the user requests it, and its effort is not fixed by this router. Its row shows the available Index range; the charts below include only the three fixed routes.
 
