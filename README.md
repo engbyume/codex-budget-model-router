@@ -39,13 +39,13 @@ AA Index cost is an estimate based on measured benchmark token use and API rates
 
 Astra is selected only when the user requests it, and its effort is not fixed by this router. Its row shows the available Index range; the charts below include only the four fixed routes.
 
-## Three-Way Graphs
+## Benchmark Graphs
 
-Each bubble's area represents AA Index cost per task. The first chart compares Index score, Index task time, and Index task cost. The second compares FrontierCode score with the same Index task time and cost; those time and cost values are not FrontierCode-specific.
+Both plots use equal-sized markers and compare benchmark scores with Artificial Analysis Index time per task. The first plots the Index score; the second plots the separate FrontierCode score. Cost stays in the comparison table, not in either plot. The FrontierCode chart uses Index task time, not FrontierCode task time.
 
-![Artificial Analysis Index score versus Index task time, with bubble area showing cost per task](charts/intelligence-index-time-cost.png)
+![Artificial Analysis Index score versus Index task time for the four fixed routes](charts/intelligence-index-score-time.png)
 
-![FrontierCode-AA 2.0 score versus Index task time, with bubble area showing Index task cost](charts/frontiercode-score-time-cost.png)
+![FrontierCode-AA 2.0 score versus Index task time for the four fixed routes](charts/frontiercode-score-time.png)
 
 ## Sources and Method
 
