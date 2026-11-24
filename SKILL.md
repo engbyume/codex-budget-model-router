@@ -1,5 +1,5 @@
 ---
-name: progressive-codex-model-router
+name: codex-budget-model-router
 description: >-
   Route Codex parent and subagent work to the most token-efficient and cost-efficient
   capable model for each task. Keep the parent on GPT-6 Luna / max, routine
@@ -7,7 +7,9 @@ description: >-
   Luna / max.
 ---
 
-# Progressive Codex Model Router
+# Codex Budget Model Router
+
+Independent community project. Not affiliated with or endorsed by OpenAI.
 
 Use this skill when Codex work can benefit from scoped subagents. The parent/main agent stays on GPT-6 Luna / max. The model picker routes subagents only; it never changes the parent. Any other model or provider must run in a scoped subagent.
 
@@ -38,7 +40,7 @@ This skill cannot change a running parent's model. Configure the host to start t
 
 ## Plus usage
 
-ChatGPT Plus is currently listed at $20/month and includes Codex usage subject to plan and account limits. This router helps Plus users stretch included usage by selecting efficient models that remain capable for each task. API token prices are separate from subscription usage and do not predict Plus usage. Verify current pricing, model availability, and usage limits because they can change. See [ChatGPT Plus](https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus) and [Using Codex with your ChatGPT plan](https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan).
+ChatGPT Plus is currently listed at $20/month and includes Codex usage subject to plan and account limits. This router helps Plus users make that allowance last. Its working assumption is that routine assignments often gain little practical value from higher model or effort settings, while those settings can consume substantially more usage. Start with the lowest-cost tested route that remains capable, then escalate when complexity, risk, or observed results warrant it. Treat this as a budget heuristic, not a guarantee. API token prices are separate from subscription usage and do not predict Plus usage. Verify current pricing, model availability, and usage limits because they can change. See [ChatGPT Plus](https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus), [Using Codex with your ChatGPT plan](https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan), and [Codex usage limits](https://help.openai.com/en/articles/20001625-understanding-chatgpt-and-codex-usage-limits).
 
 ## Dispatch and escalation
 

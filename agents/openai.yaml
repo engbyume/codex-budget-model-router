@@ -1,4 +1,4 @@
 interface:
-  display_name: "Progressive Codex Model Router"
+  display_name: "Codex Budget Model Router"
   short_description: "Cost-efficient parent and subagent routing for Codex"
-  default_prompt: "Use $progressive-codex-model-router to keep the parent on GPT-6 Luna / max, route routine subagent work from small through high to GPT-6.1 Terra / low, route computer-use subagents to GPT-6 Luna / max, and reserve stronger child routes for work that needs them."
+  default_prompt: "Use $codex-budget-model-router to keep the parent on GPT-6 Luna / max, route routine subagent work from small through high to GPT-6.1 Terra / low, route computer-use subagents to GPT-6 Luna / max, and reserve stronger child routes for work that needs them."
