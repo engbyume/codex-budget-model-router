@@ -20,7 +20,7 @@ Built for ChatGPT Plus at $20/month, this router aims to keep included Codex use
 | SUBAGENT: Coordination for 3+ dependent scopes | GPT-6 Luna / max | Use only when dedicated coordination materially helps. |
 | PARENT OR SUBAGENT: All other models outside these routes | Explicit current-task user request only | Never select automatically. |
 
-These model and effort choices represent the best observed performance-to-cost balance in this benchmark and usage snapshot. They keep routine work efficient and reserve higher-capability routes for tasks that benefit from them.
+These routes were picked for the best observed performance-versus-usage balance in this benchmark and usage snapshot. Luna / max stays the efficient Easy and Medium routine default; the faster Terra / low route is limited to Hard routine tasks because its observed usage cost is much higher. Sol / medium is reserved for complex or high-risk work where added capability matters. OpenAI Standard API rates below are official API prices, not a measure of ChatGPT or Codex plan usage.
 
 ## Parent and Subagents
 
