@@ -30,7 +30,7 @@ Use GPT-6 Luna / max for routine Easy and Medium tasks. Use the faster GPT-6.1 T
 | Nonroutine consequential independent review | Subagent: GPT-6 Luna / max | Use only when stronger independent assurance materially improves confidence. |
 | Parent or subagent: complex or high-risk implementation | GPT-6.2 Sol / medium | Use when the task needs stronger reasoning or integration. |
 | Coordination for at least three dependent scopes | Optional subagent: GPT-6 Luna / max | Use only when dedicated coordination materially helps. |
-| Astra | Child by current-task user request only | Never select automatically. |
+| All other models outside these routes | Parent or subagent, by explicit current-task request only | Never select automatically. |
 
 A GPT-6 Luna / max child may be used for computer work only when the selected child also has the required tools. Select a runtime-supported role, set `model` and `reasoning_effort` explicitly, and verify the observed child route. A role name alone does not prove the model or effort.
 

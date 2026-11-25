@@ -18,7 +18,9 @@ Built for ChatGPT Plus at $20/month, this router aims to keep included Codex use
 | SUBAGENT: Nonroutine consequential review | GPT-6 Luna / max | Use when independent review materially improves confidence. |
 | PARENT OR SUBAGENT: Complex or high-risk implementation | GPT-6.2 Sol / medium | Use for work beyond routine Hard tasks. |
 | SUBAGENT: Coordination for 3+ dependent scopes | GPT-6 Luna / max | Use only when dedicated coordination materially helps. |
-| SUBAGENT: Astra by current-task user request only | GPT-6.2 Astra; effort set per request | Never select automatically. |
+| PARENT OR SUBAGENT: All other models outside these routes | Explicit current-task user request only | Never select automatically. |
+
+These model and effort choices represent the best observed performance-to-cost balance in this benchmark and usage snapshot. They keep routine work efficient and reserve higher-capability routes for tasks that benefit from them.
 
 ## Parent and Subagents
 
@@ -37,7 +39,7 @@ Artificial Analysis Intelligence Index v5.0.1 is a weighted composite score. Its
 
 OpenAI's Standard API rate for Terra is ten times Luna's per token. The supplied usage snapshot suggested about five times higher effective cost per reported token for Terra than Luna; it is not task-normalized, so the table keeps only official OpenAI Standard API rates. These rates apply to API billing, not ChatGPT Plus or Codex plan allowances. OpenAI sets plan usage separately, and actual use varies by model, task, context, reasoning, speed, and tools.
 
-Astra is selected only when the user requests it, and its effort is not fixed by this router. Its row shows the available Index range; the charts below include only the three fixed routes.
+All other models outside the fixed routes require an explicit current-task request and are never selected automatically. The benchmark table includes a variable-effort comparison profile; the charts below include only the three fixed routes.
 
 ## Benchmark Graphs
 
